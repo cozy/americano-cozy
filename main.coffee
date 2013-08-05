@@ -9,10 +9,10 @@ _loadModels = (root, requests) ->
 
 _getRequestCreator = (root, models, docType, requestName, request) ->
     (cb) ->
-        console.log "#{docType} - #{requestName} request creation..."
+        console.info "[INFO] #{docType} - #{requestName} request creation..."
         models[docType].defineRequest requestName, request, (err) ->
-            if err then console.log "... fail"
-            else console.log "... ok"
+            if err then console.log "[ERROR]... fail"
+            else console.info "[INFO] ... ok"
             cb err
 
 _loadRequestCreators = (root, models, requests) ->
@@ -25,15 +25,20 @@ _loadRequestCreators = (root, models, requests) ->
     requestsToSave
 
 module.exports = (root, app, callback) ->
-    requests = require "#{root}/models/requests"
+    try
+        requests = require "#{root}/models/requests"
+    catch err
+        console.log "[ERROR] failed to load requests file"
+        callback err
+
     models = _loadModels root, requests
     requestsToSave = _loadRequestCreators root, models, requests
 
     async.series requestsToSave, (err) ->
         if err and err.code isnt 'EEXIST'
-            console.log "A request creation failed, abandon."
+            console.log "[ERROR] A request creation failed, abandon."
             console.log err
             callback err if callback?
         else
-            console.log "All requests have been created"
+            console.info "[INFO] All requests have been created"
             callback() if callback?
