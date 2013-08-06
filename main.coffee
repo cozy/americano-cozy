@@ -1,5 +1,6 @@
 async = require 'async'
 
+
 _loadModels = (root, requests) ->
     models = []
     for docType, docRequests of requests
@@ -15,6 +16,7 @@ _getRequestCreator = (root, models, docType, requestName, request) ->
             else console.info "[INFO] ... ok"
             cb err
 
+
 _loadRequestCreators = (root, models, requests) ->
     requestsToSave = []
     for docType, docRequests of requests
@@ -24,7 +26,10 @@ _loadRequestCreators = (root, models, requests) ->
                                    requestName, docRequest))
     requestsToSave
 
-module.exports = (root, app, callback) ->
+
+# Plugin configuration: run through models/requests.(coffee|js) and save
+# them all in the Cozy Data System.
+module.exports.configure = (root, app, callback) ->
     try
         requests = require "#{root}/models/requests"
     catch err
@@ -42,3 +47,17 @@ module.exports = (root, app, callback) ->
         else
             console.info "[INFO] All requests have been created"
             callback() if callback?
+
+
+# Additional stuff / helpers
+Schema = require('jugglingdb').Schema
+settings = url: 'http://localhost:9101/'
+module.exports.db = db = new Schema 'cozy-adapter', settings
+
+module.exports.getModel = (name, fields) ->
+    fields.id = String
+    model = db.define name, fields
+    model
+
+module.exports.defaultRequests =
+    all: (doc) -> emit doc.id, doc

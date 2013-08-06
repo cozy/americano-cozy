@@ -4,7 +4,9 @@
   "description": "Americanp helpers to build Cozy applications faster",
   "main": "./main.js",
   "dependencies": {
-    "async": "*"
+    "async": "*",
+    "jugglingdb": "~0.2.0-34",
+    "jugglingdb-cozy-adapter": "~0.3.3"
   },
   "devDependencies": {
     "coffee-script": "*",
