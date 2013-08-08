@@ -7,14 +7,15 @@ easier, notably about declaring your requests.
 
 ## Getting Started
 
-Add americano-cozy to the list of your plugnins in the Americano configuration file. Then add it as a dependency of your project:
+Add americano-cozy to the list of your plugins in the Americano configuration file. Then add it as a dependency of your project:
 
     npm install americano-cozy -g
 
 
 ## Models
 
-Do no think about including JugglingDB and its configuration for Cozy anymore,Americano Cozy does it for you:
+Do no think about including JugglingDB and its configuration for Cozy 
+anymore, Americano Cozy does the job for you:
 
 
 ```coffeescript
@@ -27,7 +28,7 @@ module.exports = americano.getModel 'Task',
 
 ## Requests
 
-Describe your Data System requests in a single file.
+Describe your Data System requests in a single file:
 
 ```coffeescript
 americano = require 'americano-cozy'
@@ -52,5 +53,6 @@ Here is what I would like to do next:
 
 * write tests
 * remove async from the dependency (use recursive functions instead)
+* make Data System URL configurable
 
 I didn't start any development yet, so you're welcome to participate!
