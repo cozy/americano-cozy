@@ -1,7 +1,7 @@
 {
   "name": "americano-cozy",
   "version": "0.1.0",
-  "description": "Americanp helpers to build Cozy applications faster",
+  "description": "Americano helpers to build Cozy applications faster",
   "main": "./main.js",
   "dependencies": {
     "async": "*",
@@ -19,7 +19,9 @@
     "test": "cake tests"
   },
   "keywords": [
-    "plugin"
+    "plugin",
+    "cozy",
+    "americano"
   ],
   "licenses": [
     {
@@ -28,7 +30,7 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/frankrousseau/americano/issues"
+    "url": "https://github.com/frankrousseau/americano-cozy/issues"
   },
   "author": "Frank R",
   "contributors": [],

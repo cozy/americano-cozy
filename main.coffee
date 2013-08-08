@@ -1,6 +1,15 @@
+###
+# Plugin for the Americano web framework that take care of your Model
+# by providing helpers to build them (it wraps jugglingdb!) and asking you
+# for writing your requests in a single and clean file.
+#
+# This plugin has only sense for Cozy applications.
+###
+
 async = require 'async'
 
 
+# Require all the models for which a request is written
 _loadModels = (root, requests) ->
     models = []
     for docType, docRequests of requests
@@ -8,6 +17,7 @@ _loadModels = (root, requests) ->
     models
 
 
+# Generates a function that will create the given request (required by async)
 _getRequestCreator = (root, models, docType, requestName, request) ->
     (cb) ->
         console.info "[INFO] #{docType} - #{requestName} request creation..."
@@ -16,7 +26,7 @@ _getRequestCreator = (root, models, docType, requestName, request) ->
             else console.info "[INFO] ... ok"
             cb err
 
-
+# Generates all the creators required to save the given requests
 _loadRequestCreators = (root, models, requests) ->
     requestsToSave = []
     for docType, docRequests of requests
@@ -49,15 +59,17 @@ module.exports.configure = (root, app, callback) ->
             callback() if callback?
 
 
-# Additional stuff / helpers
+# Wraps JugglingDB stuff and configuration.
 Schema = require('jugglingdb').Schema
 settings = url: 'http://localhost:9101/'
 module.exports.db = db = new Schema 'cozy-adapter', settings
 
+# Helpers to make it easier to build a model.
 module.exports.getModel = (name, fields) ->
     fields.id = String
     model = db.define name, fields
     model
 
+# Bunch of commonly used requests (more to come...)
 module.exports.defaultRequests =
     all: (doc) -> emit doc.id, doc
