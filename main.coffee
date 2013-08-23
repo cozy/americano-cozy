@@ -13,7 +13,7 @@ async = require 'async'
 _loadModels = (root, requests) ->
     models = []
     for docType, docRequests of requests
-        models[docType] = require "#{root}/models/#{docType}"
+        models[docType] = require "#{root}/server/models/#{docType}"
     models
 
 
@@ -41,7 +41,7 @@ _loadRequestCreators = (root, models, requests) ->
 # them all in the Cozy Data System.
 module.exports.configure = (root, app, callback) ->
     try
-        requests = require "#{root}/models/requests"
+        requests = require "#{root}/server/models/requests"
     catch err
         console.log "[ERROR] failed to load requests file"
         callback err
