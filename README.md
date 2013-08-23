@@ -31,6 +31,7 @@ module.exports = americano.getModel 'Task',
 Describe your Data System requests in a single file:
 
 ```coffeescript
+# server/models/requests.coffee
 americano = require 'americano-cozy'
 
 module.exports =
