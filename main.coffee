@@ -72,4 +72,4 @@ module.exports.getModel = (name, fields) ->
 
 # Bunch of commonly used requests (more to come...)
 module.exports.defaultRequests =
-    all: (doc) -> emit doc.id, doc
+    all: (doc) -> emit doc._id, doc
