@@ -5,8 +5,8 @@
   "main": "./main.js",
   "dependencies": {
     "async": "*",
-    "jugglingdb": "~0.2.0-34",
-    "jugglingdb-cozy-adapter": "~0.3.3"
+    "jugglingdb": "0.2.0-34",
+    "jugglingdb-cozy-adapter": "0.3.12"
   },
   "devDependencies": {
     "coffee-script": "*",
