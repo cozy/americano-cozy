@@ -5,7 +5,7 @@
   "main": "./main.js",
   "dependencies": {
     "async": "*",
-    "jugglingdb": "0.2.0-34",
+    "jugglingdb": "0.2.0-41",
     "jugglingdb-cozy-adapter": "0.3.12"
   },
   "devDependencies": {
