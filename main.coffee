@@ -6,8 +6,6 @@
 # This plugin has only sense for Cozy applications.
 ###
 
-async = require 'async'
-
 
 # Require all the models for which a request is written
 _loadModels = (root, requests) ->
@@ -17,23 +15,43 @@ _loadModels = (root, requests) ->
     models
 
 
-# Generates a function that will create the given request (required by async)
-_getRequestCreator = (root, models, docType, requestName, request) ->
-    (cb) ->
-        console.info "[INFO] #{docType} - #{requestName} request creation..."
-        models[docType].defineRequest requestName, request, (err) ->
+_saveRequest = (models, request, callback) ->
+    docType = request.docType
+    requestName = request.requestName
+    console.info "[INFO] #{docType} - #{requestName} request creation..."
+    models[request.docType].defineRequest(
+        request.requestName,
+        request.docRequest,
+        (err) ->
             if err then console.log "[ERROR]... fail"
             else console.info "[INFO] ... ok"
-            cb err
+            callback err
+    )
+
+
+_saveRequests = (models, requestsToSave, callback) ->
+    if requestsToSave.length > 0
+        request = requestsToSave.pop()
+        _saveRequest models, request, (err) ->
+            if err
+                callback err
+            else
+                _saveRequests models, requestsToSave, callback
+    else
+        callback()
+
 
 # Generates all the creators required to save the given requests
 _loadRequestCreators = (root, models, requests) ->
     requestsToSave = []
     for docType, docRequests of requests
         for requestName, docRequest of docRequests
-            requestsToSave.push(
-                _getRequestCreator(root, models, docType, \
-                                   requestName, docRequest))
+            requestsToSave.push
+                root: root
+                models: models
+                docType: docType
+                requestName: requestName
+                docRequest: docRequest
     requestsToSave
 
 
@@ -48,8 +66,7 @@ module.exports.configure = (root, app, callback) ->
 
     models = _loadModels root, requests
     requestsToSave = _loadRequestCreators root, models, requests
-
-    async.series requestsToSave, (err) ->
+    _saveRequests models, requestsToSave, (err) ->
         if err and err.code isnt 'EEXIST'
             console.log "[ERROR] A request creation failed, abandon."
             console.log err
