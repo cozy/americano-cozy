@@ -1,11 +1,11 @@
 {
   "name": "americano-cozy",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Americano helpers to build Cozy applications faster",
   "main": "./main.js",
   "dependencies": {
     "jugglingdb": "0.2.0-41",
-    "jugglingdb-cozy-adapter": "0.3.12"
+    "jugglingdb-cozy-adapter": "0.3.14"
   },
   "devDependencies": {
     "coffee-script": "*",
