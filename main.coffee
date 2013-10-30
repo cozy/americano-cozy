@@ -1,7 +1,7 @@
 ###
-# Plugin for the Americano web framework that take care of your Model
-# by providing helpers to build them (it wraps jugglingdb!) and asking you
-# for writing your requests in a single and clean file.
+# Plugin for the Americano web framework that takes care of your Model
+# by providing helpers to build them (it wraps jugglingdb!). It requires you
+# to write your requests in a single and clean file.
 #
 # This plugin has only sense for Cozy applications.
 ###
@@ -15,13 +15,15 @@ _loadModels = (root, requests) ->
     models
 
 
+# Create request in CouchDB for the given docType through the Data System API.
 _saveRequest = (models, request, callback) ->
     docType = request.docType
-    requestName = request.requestName
+    requestName = request.name
+    docRequest = request.docRequest
     console.info "[INFO] #{docType} - #{requestName} request creation..."
-    models[request.docType].defineRequest(
-        request.requestName,
-        request.docRequest,
+    models[docType].defineRequest(
+        requestName,
+        docRequest,
         (err) ->
             if err then console.log "[ERROR]... fail"
             else console.info "[INFO] ... ok"
@@ -29,6 +31,9 @@ _saveRequest = (models, request, callback) ->
     )
 
 
+# Save given requests in a recursive way. Each requests are saved one by one.
+# If a request creation failed, it stops the process and call the callback with
+# an error?
 _saveRequests = (models, requestsToSave, callback) ->
     if requestsToSave.length > 0
         request = requestsToSave.pop()
@@ -41,7 +46,7 @@ _saveRequests = (models, requestsToSave, callback) ->
         callback()
 
 
-# Generates all the creators required to save the given requests
+# Generates all the creators required to save the given requests.
 _loadRequestCreators = (root, models, requests) ->
     requestsToSave = []
     for docType, docRequests of requests
@@ -50,7 +55,7 @@ _loadRequestCreators = (root, models, requests) ->
                 root: root
                 models: models
                 docType: docType
-                requestName: requestName
+                name: requestName
                 docRequest: docRequest
     requestsToSave
 
