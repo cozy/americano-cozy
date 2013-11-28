@@ -1,6 +1,6 @@
 {
   "name": "americano-cozy",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "Americano helpers to build Cozy applications faster",
   "main": "./main.js",
   "dependencies": {
