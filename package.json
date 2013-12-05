@@ -25,11 +25,11 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/frankrousseau/americano-cozy/blob/master/LICENSE"
+      "url": "https://github.com/mycozycloud/americano-cozy/blob/master/LICENSE"
     }
   ],
   "bugs": {
-    "url": "https://github.com/frankrousseau/americano-cozy/issues"
+    "url": "https://github.com/mycozycloud/americano-cozy/issues"
   },
   "author": "Frank R",
   "contributors": [],
@@ -38,6 +38,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/frankrousseau/americano-cozy.git"
+    "url": "https://github.com/mycozycloud/americano-cozy.git"
   }
 }
