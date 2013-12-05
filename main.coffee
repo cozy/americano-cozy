@@ -20,13 +20,13 @@ _saveRequest = (models, request, callback) ->
     docType = request.docType
     requestName = request.name
     docRequest = request.docRequest
-    console.info "[INFO] #{docType} - #{requestName} request creation..."
+    console.info "[INFO - americano-cozy] #{docType} - #{requestName} request creation..."
     models[docType].defineRequest(
         requestName,
         docRequest,
         (err) ->
-            if err then console.log "[ERROR]... fail"
-            else console.info "[INFO] ... ok"
+            if err then console.log "[ERROR - americano-cozy]... fail"
+            else console.info "[INFO - americano-cozy] ... ok"
             callback err
     )
 
@@ -66,18 +66,18 @@ module.exports.configure = (root, app, callback) ->
     try
         requests = require "#{root}/server/models/requests"
     catch err
-        console.log "[ERROR] failed to load requests file"
+        console.log "[ERROR - americano-cozy] failed to load requests file"
         callback err
 
     models = _loadModels root, requests
     requestsToSave = _loadRequestCreators root, models, requests
     _saveRequests models, requestsToSave, (err) ->
         if err and err.code isnt 'EEXIST'
-            console.log "[ERROR] A request creation failed, abandon."
+            console.log "[ERROR - americano-cozy] A request creation failed, abandon."
             console.log err
             callback err if callback?
         else
-            console.info "[INFO] All requests have been created"
+            console.info "[INFO - americano-cozy] All requests have been created"
             callback() if callback?
 
 
