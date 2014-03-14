@@ -2,6 +2,7 @@
   "name": "americano-cozy",
   "version": "0.1.8",
   "description": "Americano helpers to build Cozy applications faster",
+  "author": "Cozy Cloud <contact@cozycloud.cc> (http://cozycloud.cc)",
   "main": "./main.js",
   "dependencies": {
     "jugglingdb": "0.2.0-41",
@@ -31,7 +32,6 @@
   "bugs": {
     "url": "https://github.com/frankrousseau/americano-cozy/issues"
   },
-  "author": "Frank R",
   "contributors": [],
   "engines": {
     "node": "*"
