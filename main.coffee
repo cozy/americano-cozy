@@ -6,6 +6,9 @@
 # This plugin has only sense for Cozy applications.
 ###
 
+log = require('printit')
+    date: true
+    prefix: 'americano-cozy'
 
 # Require all the models for which a request is written
 _loadModels = (root, requests) ->
@@ -20,13 +23,13 @@ _saveRequest = (models, request, callback) ->
     docType = request.docType
     requestName = request.name
     docRequest = request.docRequest
-    console.info "[INFO] #{docType} - #{requestName} request creation..."
+    log.info "#{docType} - #{requestName} request creation..."
     models[docType].defineRequest(
         requestName,
         docRequest,
         (err) ->
-            if err then console.log "[ERROR]... fail"
-            else console.info "[INFO] ... ok"
+            if err then log.error "failed #{err}"
+            else log.info "succeeded"
             callback err
     )
 
@@ -66,18 +69,18 @@ module.exports.configure = (root, app, callback) ->
     try
         requests = require "#{root}/server/models/requests"
     catch err
-        console.log "[ERROR] failed to load requests file"
+        log.error "failed to load requests file"
         callback err
 
     models = _loadModels root, requests
     requestsToSave = _loadRequestCreators root, models, requests
     _saveRequests models, requestsToSave, (err) ->
         if err and err.code isnt 'EEXIST'
-            console.log "[ERROR] A request creation failed, abandon."
+            log.error "A request creation failed, abandon."
             console.log err
             callback err if callback?
         else
-            console.info "[INFO] All requests have been created"
+            log.info "All requests have been created"
             callback() if callback?
 
 

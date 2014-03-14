@@ -1,12 +1,13 @@
 {
   "name": "americano-cozy",
-  "version": "0.1.8",
+  "version": "0.2.2",
   "description": "Americano helpers to build Cozy applications faster",
   "author": "Cozy Cloud <contact@cozycloud.cc> (http://cozycloud.cc)",
   "main": "./main.js",
   "dependencies": {
     "jugglingdb": "0.2.0-41",
-    "jugglingdb-cozy-adapter": "0.4.2"
+    "jugglingdb-cozy-adapter": "0.4.5",
+    "printit": "~0.1.3"
   },
   "devDependencies": {
     "coffee-script": "*",
@@ -26,11 +27,11 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/frankrousseau/americano-cozy/blob/master/LICENSE"
+      "url": "https://github.com/mycozycloud/americano-cozy/blob/master/LICENSE"
     }
   ],
   "bugs": {
-    "url": "https://github.com/frankrousseau/americano-cozy/issues"
+    "url": "https://github.com/mycozycloud/americano-cozy/issues"
   },
   "contributors": [],
   "engines": {
@@ -38,6 +39,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/frankrousseau/americano-cozy.git"
+    "url": "https://github.com/mycozycloud/americano-cozy.git"
   }
 }
