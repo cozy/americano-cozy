@@ -6,7 +6,7 @@
   "main": "./main.js",
   "dependencies": {
     "jugglingdb": "0.2.0-41",
-    "jugglingdb-cozy-adapter": "0.4.5",
+    "jugglingdb-cozy-adapter": "0.4.7",
     "printit": "~0.1.3"
   },
   "devDependencies": {
