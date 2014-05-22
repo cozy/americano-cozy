@@ -86,8 +86,7 @@ module.exports.configure = (root, app, callback) ->
 
 # Wraps JugglingDB stuff and configuration.
 Schema = require('jugglingdb').Schema
-settings = url: 'http://localhost:9101/'
-module.exports.db = db = new Schema 'cozy-adapter', settings
+module.exports.db = db = new Schema 'cozy-adapter', {}
 
 # Helpers to make it easier to build a model.
 module.exports.getModel = (name, fields) ->
