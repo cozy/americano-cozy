@@ -65,7 +65,12 @@ _loadRequestCreators = (root, models, requests) ->
 
 # Plugin configuration: run through models/requests.(coffee|js) and save
 # them all in the Cozy Data System.
-module.exports.configure = (root, app, callback) ->
+module.exports.configure = (options, app, callback) ->
+    if typeof options is 'string'
+        root = options
+    else
+        root = options.root
+
     try
         requests = require "#{root}/server/models/requests"
     catch err
