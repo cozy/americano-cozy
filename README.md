@@ -74,6 +74,6 @@ own one too.
 You can reach the Cozy community via various support:
 
 * IRC #cozycloud on irc.freenode.net
-* Post on our [Forum](https://groups.google.com/forum/?fromgroups#!forum/cozy-cloud)
-* Post issues on the [Github repos](https://github.com/mycozycloud/)
+* Posting on our [Forum](https://forum.cozy.io/)
+* Posting issues on the [Github repos](https://github.com/cozy/)
 * Via [Twitter](http://twitter.com/mycozycloud)
